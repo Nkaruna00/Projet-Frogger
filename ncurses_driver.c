@@ -1,7 +1,9 @@
 #include "game.h"
 #include "driver.h"
 #include <time.h>
+#include <unistd.h>
 #include <ncurses.h>
+#include <stdlib.h>
 
 static int init(const Game* game);
 static void start(void(*callback)(void*));
@@ -22,8 +24,8 @@ Driver ncurses_driver = {
 
 #define GAME (ncurses_driver.game)
 
-static char tiles[NCell] = {'|', ':',':', '~','-'};
-static const char* sprites[NSprite] = {"ooo@<<<@>>>@^^^@vvv@","AAA","BBB","CCC","DDD","EEE","FFF","CCC","DDD","EEE","FFF"};
+static char tiles[] = {'|', ':',':', '~','-','A','B','C','D','E','F','C','D','E','F'};
+static const char* sprites[NSprite] = {"ooo@<<<@>>>@^^^@vvv@"};
 
 enum { FPS = 15 };
 
@@ -56,6 +58,11 @@ static int get_move(void) {
             return Down;
         case 'd':
             return Right;
+        case 'p':
+              refresh();
+              endwin();
+              exit(0);
+
         default:
             break;
     }

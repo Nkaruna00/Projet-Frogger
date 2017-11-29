@@ -21,9 +21,9 @@ static const char* level1 = {
     "AADDDDDDDDDDDDDDDDDDDDDDDAA"
     "AABBBBBBBBBBBBBBBBBBBBBBBAA"
     "AAEEEEEEEEEEEEEEEEEEEEEEEAA"
-    "AAEEEEEEEEEEEEEEEEEEEEEEEAA"
-    "AAEEEEEEEEEEEEEEEEEEEEEEEAA"
-    "AAEEEEEEEEEEEEEEEEEEEEEEFAA"
+    "AAEEEEEEEEEEEEEEEEEEEEIEEAA"
+    "AAEEEEEEEEEEEEEEHEEEEEEEHAA"
+    "AAEEEEEEEEEGEEEEEEEEFEEEEAA"
     "AAEEEEEEEEEEEEEEEEEEEEEEEAA"
     "AAAAAAAAAAAAAAAAAAAAAAAAAAA"
 };
@@ -62,20 +62,37 @@ static void move_auto(){
 
 static void move_auto(){
     int tmp;
+    int tmp2;
     for(int i = 0; i < H*W; i++){
-		if(g.background[i] == Taxi){
+		if(g.background[i] == Taxi|g.background[i] == Mini|g.background[i] == Police){
 	        if( g.background[i-1] == Grass ){
 		        tmp = g.background[i];
 	            g.background[i] = g.background[i+(W-5)];
 		        g.background[i+(W-5)] = tmp ;
 		    }
+
 		    else{
 		        tmp = g.background[i];
 	            g.background[i] = g.background[i-1];
 		        g.background[i-1] = tmp ;
 		    }
-
 		}
+
+    if(g.background[i] == Ambulance){
+	        if( g.background[i+1] == Grass ){
+		        tmp2 = g.background[i];
+	            g.background[i] = g.background[i+(W-27)];
+		        g.background[i+(W-27)] = tmp2 ;
+		    }
+
+		    else{
+		        tmp2 = g.background[i];
+	            g.background[i] = g.background[i+1];
+		        g.background[i+1] = tmp2 ;
+		    }
+		}
+
+
 	}
 }
 
