@@ -63,6 +63,7 @@ static void move_auto(){
 static void move_auto(){
     int tmp;
     int tmp2;
+    int tmp3;
     for(int i = 0; i < H*W; i++){
 		if(g.background[i] == Taxi|g.background[i] == Mini|g.background[i] == Police){
 	        if( g.background[i-1] == Grass ){
@@ -88,7 +89,8 @@ static void move_auto(){
 		    else{
 		        tmp2 = g.background[i];
 	            g.background[i] = g.background[i+1];
-		        g.background[i+1] = tmp2 ;
+		        g.background[i+1] = tmp2;
+
 		    }
 		}
 
